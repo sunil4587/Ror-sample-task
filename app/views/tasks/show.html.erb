@@ -1,0 +1,45 @@
+<% content_for :title, "Task- #{@task.title}" %>
+<div class="starter-template">
+  <div class="card" style="width: 40rem; margin:auto">
+    <div class="card-header">
+      <h3><%= @task.title %></h3>
+    </div>
+    <table class="table">
+      <tbody>
+       <tr>
+          <tr>
+            <th scope="row">Status</th>
+            <td scope="row"><%= @task.status %></td>
+          </tr>
+          <tr>
+            <th scope="row">Due date</th>
+            <td scope="row"><%= @task.due_date %></td>
+          </tr>
+          <tr>
+            <th scope="row">Note</th>
+            <td scope="row"><%= @task.notes %></td>
+          </tr>
+          <tr>
+            <th scope="row">Created On</th>
+            <td scope="row"><%= @task.created_at.strftime('%d-%m-%Y %I:%M:%S %p') %></td>
+          </tr>
+        </tr>
+      </tbody>
+    </table>
+    <div>
+      <span class="mb-0 ml-4" >
+        <%= link_to "Back to listing", tasks_path() %>
+      </span>
+      <span class="mb-2 mr-4" style="float:right">
+        <%= link_to "Edit", edit_task_path(@task), class: "btn btn-info" %>
+        <%= link_to "Delete", task_path(@task), 
+          method: :delete,
+          data: {
+            confirm: "Are you sure?"
+          },
+          class: "btn btn-danger"
+        %>
+      </span>
+      </div>
+  </div>
+</div>

@@ -1,0 +1,57 @@
+<% content_for :title, "Tasks listing" %>
+<div class="card">
+  <div class="card-header">
+    <h3>Tasks listing</h3>
+  </div>
+  <div class="card-body">
+    <% if flash %>
+      <% flash.each do |name, msg| -%>
+        <div class="mb-2">
+          <div class="alert alert-<%= name %> alert-dismissible fade show" role="alert">
+            <%= msg %>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+    <table class="table table-hover">
+      <thead class="">
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Title</th>
+          <th scope="col">Due date</th>
+          <th scope="col">Status</th>
+          <th scope="col">Note</th>
+          <th scope="col">Created On</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @tasks.each do |task| %>
+          <tr>
+            <th scope="row"><%= task.id %></th>
+            <td><%= task.title %></td>
+            <td><%= task.due_date %></td>
+            <td><%= task.status.titleize %></td>
+            <td><%= task.notes %></td>
+            <td><%= task.created_at.strftime('%d-%m-%Y %I:%M:%S %p') %></td>
+            <td>
+              <%= link_to "Edit", edit_task_path(task.id), class: "btn btn-info" %>
+              <%= link_to "View", task_path(task.id), class: "btn btn-warning" %>
+              <%= link_to "Delete", task_path(task.id), 
+                method: :delete,
+                data: {
+                  confirm: "Are you sure?"
+                },
+                class: "btn btn-danger"
+              %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <%= link_to "Add New Task", new_task_path(), class:"btn btn-success" %>
+  </div>
+</div>

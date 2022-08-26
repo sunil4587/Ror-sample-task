@@ -1,0 +1,34 @@
+<%= form_with model: @task do |form| %>
+  <div class="card-body">
+    <div class="mb-2">
+      <%= form.label :title, { class: "form-label"} %><br>
+      <%= form.text_field :title, { class: "form-control", placeholder: "Add a title" }%>  
+      <% @task.errors.full_messages_for(:title).each do |message| %>
+        <p class="text-danger"><%= message %></p>
+      <% end %>
+    </div>
+
+    <div class="mb-2">
+      <%= form.label :due_date, { class: "form-label"} %><br>
+      <%= form.date_field :due_date,{ class: "form-control"}%>
+      <% @task.errors.full_messages_for(:due_date).each do |message| %>
+        <p class="text-danger"><%= message %></p>
+      <% end %>
+    </div>
+
+    <div class="mb-2">
+      <%= form.label :task_status, { class: "form-label"}%><br>
+      <%= form.select(:status, options_for_select([['Pending','pending'], ['In Progress','in_progress'],['Assigned','assigned']]),{}, {class: "form-control"}) %>
+    </div>
+
+    <div class="mb-2 ">
+      <%= form.label :Note, { class: "form-label"} %><br>
+      <%= form.text_area :notes ,{ class: "form-control", placeholder: "Add a note" }%>
+    </div>
+    <br/>
+    <%= form.submit "Submit", class: "btn btn-success btn-lg btn-block" %>
+    <b class="mb-2 mt-2" style="float:right">
+      <%= link_to "Task listing", tasks_path() %>
+    </b>
+  </div>
+<% end %>
