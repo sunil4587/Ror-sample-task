@@ -14,6 +14,6 @@
 - Then run ***"rails db:migrate"*** to migrate database
 - After finishing the migration , run ***"rails server"*** to run server
 
-NOTE - In case, if its shows "webpacker error"run ***"bundle exec rails webpacker:install"***  and after install try to run server again by "rails server"
+NOTE - In case, if its shows error "Webpacker can't find application.js "run ***"bundle exec rails webpacker:install"***  and after install try to run server again by "rails server"
 
 
